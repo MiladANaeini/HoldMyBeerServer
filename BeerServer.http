@@ -1,1 +1,17 @@
-Get http://localhost:5260
+GET http://localhost:5260/users
+
+###
+
+GET http://localhost:5260/users/1
+
+###
+POST  http://localhost:5260/users
+Content-Type: application/json
+
+{
+    "userName": "sagTole",
+    "password": "sag333",
+    "email": "sag@test.com",
+    "createdDate": "2011-11-18"
+}
+
