@@ -24,3 +24,9 @@ F:\Web projects\HoldMyBeerServer\HoldMyBeerServer\obj\Debug\net8.0\HoldMyBeerSer
 F:\Web projects\HoldMyBeerServer\HoldMyBeerServer\obj\Debug\net8.0\HoldMyBeerServer.genruntimeconfig.cache
 F:\Web projects\HoldMyBeerServer\HoldMyBeerServer\obj\Debug\net8.0\ref\HoldMyBeerServer.dll
 F:\Web projects\HoldMyBeerServer\HoldMyBeerServer\obj\Debug\net8.0\HoldMyBeerServer.sourcelink.json
+F:\Web projects\HoldMyBeerServer\HoldMyBeerServer\bin\Debug\net8.0\Microsoft.OpenApi.dll
+F:\Web projects\HoldMyBeerServer\HoldMyBeerServer\bin\Debug\net8.0\MinimalApis.Extensions.dll
+F:\Web projects\HoldMyBeerServer\HoldMyBeerServer\bin\Debug\net8.0\MiniValidation.dll
+F:\Web projects\HoldMyBeerServer\HoldMyBeerServer\obj\Debug\net8.0\HoldMyBeerServer.csproj.AssemblyReference.cache
+F:\Web projects\HoldMyBeerServer\HoldMyBeerServer\obj\Debug\net8.0\HoldMyBeerServer.MvcApplicationPartsAssemblyInfo.cs
+F:\Web projects\HoldMyBeerServer\HoldMyBeerServer\obj\Debug\net8.0\HoldMyBe.0F44C01F.Up2Date

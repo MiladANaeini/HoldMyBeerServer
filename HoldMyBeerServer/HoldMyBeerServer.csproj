@@ -5,5 +5,9 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
   </PropertyGroup>
+<!-- handle errors if api calling is not correct -->
+  <ItemGroup>
+    <PackageReference Include="MinimalApis.Extensions" Version="0.11.0" />
+  </ItemGroup>
 
 </Project>

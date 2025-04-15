@@ -15,7 +15,8 @@ private static readonly List<UserDto> users = [
 
 public static RouteGroupBuilder MapGamesEndpoints(this WebApplication app){
 
-var group = app.MapGroup("users");
+var group = app.MapGroup("users").WithParameterValidation();
+
 
 // GET - ALL USERS
 group.MapGet("/", () => users);
