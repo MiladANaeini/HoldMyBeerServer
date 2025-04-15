@@ -17,7 +17,13 @@ List<UserDto> users = [
 app.MapGet("users", () => users);
 
 // GET - USER
-app.MapGet("users/{id}", (int id) => users.Find(user => user.Id == id))
+app.MapGet("users/{id}", (int id) => {
+
+    UserDto? user = users.Find(user => user.Id == id);
+
+    return user is null ? Results.NotFound() : Results.Ok(user);
+}
+)
 .WithName(GetUserEndpointName);
 
 // POST - CREATE USER
@@ -35,5 +41,30 @@ app.MapPost("users",(CreateUserDto newUser)=> {
      new { id = user.Id }, user);
 });
 
+// PUT - UPDATE USER
+app.MapPut("users/{id}",(int id , UpdateUserDto updatedUser)=> {
+ var userIndex = users.FindIndex(user => user.Id == id);
+
+if (userIndex == -1) {
+    return Results.NotFound();
+}
+
+ users[userIndex] = new UserDto(
+    id,
+    updatedUser.UserName,
+    updatedUser.Password,
+    updatedUser.Email,
+    users[userIndex].CreatedDate
+ );
+
+ return Results.NoContent();
+});
+
+// DELETE - USER 
+app.MapDelete("users/{id}",(int id)=> {
+    users.RemoveAll(user => user.Id == id);
+
+ return Results.NoContent();
+});
 
 app.Run();
