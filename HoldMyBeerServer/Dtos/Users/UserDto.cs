@@ -1,3 +1,5 @@
+using HoldMyBeerServer.Dtos.Friends;
+
 namespace HoldMyBeerServer.Dtos;
 
 public record class UserDto(
@@ -5,5 +7,6 @@ public record class UserDto(
     string UserName, 
     string Password, 
     string Email,
-    DateOnly CreatedDate
+    DateOnly CreatedDate,
+    List<FriendDto> Friends
     );

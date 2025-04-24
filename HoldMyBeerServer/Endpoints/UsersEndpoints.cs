@@ -1,5 +1,6 @@
 using System;
 using HoldMyBeerServer.Dtos;
+using HoldMyBeerServer.Dtos.Friends;
 
 namespace HoldMyBeerServer.Endpoints;
 public static class UsersEndpoints
@@ -8,9 +9,13 @@ public static class UsersEndpoints
 const string GetUserEndpointName = "GetUser";
 
 private static readonly List<UserDto> users = [
-    new (1,"miladUser","Pass123","milad@test.com",new DateOnly(2020,07,15)),
-    new (2,"sadafUser","Pass456","sadaf@test.com",new DateOnly(2021,01,15)),
-    new (3,"sagUser","Pass789","sag@test.com",new DateOnly(2022,09,15))
+    new (1,"miladUser","Pass123","milad@test.com",new DateOnly(2020,07,15), new List<FriendDto>()),
+    new (2,"sadafUser","Pass456","sadaf@test.com",new DateOnly(2021,01,15),new List<FriendDto>()),
+    new (3,"sagUser","Pass789","sag@test.com",new DateOnly(2022,09,15), new List<FriendDto>
+        {
+            new(2, "sadafUser"),
+            new(1, "miladUser")
+        })
 ];
 
 public static RouteGroupBuilder MapGamesEndpoints(this WebApplication app){
@@ -38,7 +43,8 @@ group.MapPost("/",(CreateUserDto newUser)=> {
         newUser.UserName,
         newUser.Password,
         newUser.Email,
-        newUser.CreatedDate
+        newUser.CreatedDate,
+        new List<FriendDto>()
     );
     users.Add(user);
 
@@ -54,12 +60,15 @@ if (userIndex == -1) {
     return Results.NotFound();
 }
 
+var existingFriends = users[userIndex].Friends;
+
  users[userIndex] = new UserDto(
     id,
     updatedUser.UserName,
     updatedUser.Password,
     updatedUser.Email,
-    users[userIndex].CreatedDate
+    users[userIndex].CreatedDate,
+    existingFriends
  );
 
  return Results.NoContent();

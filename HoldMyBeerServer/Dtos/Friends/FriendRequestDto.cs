@@ -5,7 +5,7 @@ public enum FriendshipStatus{
     Accepted,
     Rejected
 }
-public record class FriendsDto
+public record class FriendRequestDto
 (
     int Id,
     int RequesterId,

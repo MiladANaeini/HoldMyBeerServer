@@ -1,4 +1,5 @@
 using System.ComponentModel.DataAnnotations;
+using HoldMyBeerServer.Dtos.Friends;
 
 namespace HoldMyBeerServer.Dtos;
 
