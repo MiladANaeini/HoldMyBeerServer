@@ -10,7 +10,8 @@ var app = builder.Build();
 
 
 
-app.MapGamesEndpoints();
+app.MapUsersEndpoints();
+app.MapFriendRequestEndpoints();
 
 app.MigrateDb();
 

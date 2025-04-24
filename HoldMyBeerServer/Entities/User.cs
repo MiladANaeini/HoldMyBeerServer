@@ -10,5 +10,7 @@ public class User
    public string Password { get; set; } = null!;
    public string Email { get; set; } = null!;
    public DateTime CreatedDate { get; set; }
-
+   
+    public List<Friend> Friends { get; set; } = new();
+   public List<FriendRequest> Requests { get; set; } = new();
 }
