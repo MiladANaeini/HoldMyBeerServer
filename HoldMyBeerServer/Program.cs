@@ -13,6 +13,6 @@ var app = builder.Build();
 app.MapUsersEndpoints();
 app.MapFriendRequestEndpoints();
 
-app.MigrateDb();
+// app.MigrateDb();
 
 app.Run();

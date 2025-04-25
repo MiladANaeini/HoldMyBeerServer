@@ -10,5 +10,6 @@ public record class FriendRequestDto
     int Id,
     int RequesterId,
     int AddresseeId,
+    string AddresseeUserName,
     FriendshipStatus Status
 );
