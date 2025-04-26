@@ -2,7 +2,7 @@ GET http://localhost:5260/users
 
 ###
 
-GET http://localhost:5260/users/4
+GET http://localhost:5260/users/2
 
 ###
 POST  http://localhost:5260/users
@@ -36,6 +36,16 @@ Content-Type: application/json
 {
     "requesterId": "3",
     "addresseeId": "2"
+}
+
+###
+PUT  http://localhost:5260/FriendRequests/4baa703e-c8a7-46d1-8605-51d67935d068
+Content-Type: application/json
+
+{
+    "requesterId": "3",
+    "addresseeId": "2",
+    "status": 1
 }
 
 ###
