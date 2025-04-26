@@ -36,8 +36,7 @@ group.MapPost("/",(CreateUserDto newUser)=> {
         newUser.Password,
         newUser.Email,
         newUser.CreatedDate,
-        new List<FriendDto>(),
-        new List<FriendRequestDto>()
+        new List<FriendDto>()
     );
     UserStore.users.Add(user);
 
@@ -54,7 +53,6 @@ if (userIndex == -1) {
 }
 
 var existingFriends = UserStore.users[userIndex].Friends;
-var requestedFriends = UserStore.users[userIndex].Requests;
 
  UserStore.users[userIndex] = new UserDto(
     id,
@@ -62,8 +60,7 @@ var requestedFriends = UserStore.users[userIndex].Requests;
     updatedUser.Password,
     updatedUser.Email,
     UserStore.users[userIndex].CreatedDate,
-    existingFriends,
-    requestedFriends
+    existingFriends
  );
 
  return Results.NoContent();

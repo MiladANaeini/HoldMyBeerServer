@@ -8,6 +8,5 @@ public record class UserDto(
     string Password, 
     string Email,
     DateOnly CreatedDate,
-    List<FriendDto> Friends,
-    List<FriendRequestDto> Requests
+    List<FriendDto> Friends
     );

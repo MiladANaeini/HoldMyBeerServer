@@ -12,5 +12,4 @@ public class User
    public DateTime CreatedDate { get; set; }
    
     public List<Friend> Friends { get; set; } = new();
-   public List<FriendRequest> Requests { get; set; } = new();
 }
