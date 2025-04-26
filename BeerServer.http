@@ -34,8 +34,8 @@ POST  http://localhost:5260/FriendRequests
 Content-Type: application/json
 
 {
-    "requesterId": 3,
-    "addresseeId": 2
+    "requesterId": "3",
+    "addresseeId": "2"
 }
 
 ###

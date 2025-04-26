@@ -2,6 +2,6 @@ namespace HoldMyBeerServer.Dtos.Friends;
 
 public record class FriendDto
 (
-  int Id,
+  string Id,
   string UserName
 );

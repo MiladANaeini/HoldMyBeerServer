@@ -4,6 +4,6 @@ namespace HoldMyBeerServer.Dtos.Friends;
 
 public record class CreateFriendRequest
 (
-    [Required] int RequesterId,
-    [Required] int AddresseeId
+    [Required] string RequesterId,
+    [Required] string AddresseeId
 );

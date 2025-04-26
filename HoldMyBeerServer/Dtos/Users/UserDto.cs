@@ -3,7 +3,7 @@ using HoldMyBeerServer.Dtos.Friends;
 namespace HoldMyBeerServer.Dtos;
 
 public record class UserDto(
-    int Id,
+    string Id,
     string UserName, 
     string Password, 
     string Email,

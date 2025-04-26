@@ -16,8 +16,8 @@ var group = app.MapGroup("FriendRequests").WithParameterValidation();
 group.MapPost("/", (CreateFriendRequest newRequest) =>
 {
 
- int requesterId = newRequest.RequesterId;
- int addresseeId = newRequest.AddresseeId;
+ string requesterId = newRequest.RequesterId;
+ string addresseeId = newRequest.AddresseeId;
 
  var requesterIndex = UserStore.users.FindIndex(user=> user.Id == requesterId);
  var addresseeIndex = UserStore.users.FindIndex(user=> user.Id == addresseeId);
@@ -53,7 +53,7 @@ if (!reqList.TryGetValue(addresseeId, out var targetUser))
 
 });
 
-group.MapGet("/{id}/sent", (int id) =>{
+group.MapGet("/{id}/sent", (string id) =>{
 
   var userIndex = UserStore.users.FindIndex(user => user.Id == id);
 
@@ -69,7 +69,7 @@ group.MapGet("/{id}/sent", (int id) =>{
     return Results.Ok(sentRequests);
 });
 
-group.MapGet("/{id}/received", (int id) =>{
+group.MapGet("/{id}/received", (string id) =>{
 
   var userIndex = UserStore.users.FindIndex(user => user.Id == id);
 

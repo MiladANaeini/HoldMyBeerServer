@@ -13,13 +13,13 @@ const string GetUserEndpointName = "GetUser";
 public static RouteGroupBuilder MapUsersEndpoints(this WebApplication app){
 
 var group = app.MapGroup("users").WithParameterValidation();
-
+var id = Guid.NewGuid().ToString();
 
 // GET - ALL USERS
 group.MapGet("/", () => UserStore.users);
 
 // GET - USER
-group.MapGet("/{id}", (int id) => {
+group.MapGet("/{id}", (string id) => {
 
     UserDto? user = UserStore.users.Find(user => user.Id == id);
 
@@ -31,7 +31,7 @@ group.MapGet("/{id}", (int id) => {
 // POST - CREATE USER
 group.MapPost("/",(CreateUserDto newUser)=> {
     UserDto user = new (
-        UserStore.users.Count + 1,
+        id,
         newUser.UserName,
         newUser.Password,
         newUser.Email,
@@ -45,7 +45,7 @@ group.MapPost("/",(CreateUserDto newUser)=> {
 });
 
 // PUT - UPDATE USER
-group.MapPut("/{id}",(int id , UpdateUserDto updatedUser)=> {
+group.MapPut("/{id}",(string id , UpdateUserDto updatedUser)=> {
  var userIndex = UserStore.users.FindIndex(user => user.Id == id);
 
 if (userIndex == -1) {
@@ -67,7 +67,7 @@ var existingFriends = UserStore.users[userIndex].Friends;
 });
 
 // DELETE - USER 
-group.MapDelete("/{id}",(int id)=> {
+group.MapDelete("/{id}",(string id)=> {
     UserStore.users.RemoveAll(user => user.Id == id);
 
  return Results.NoContent();

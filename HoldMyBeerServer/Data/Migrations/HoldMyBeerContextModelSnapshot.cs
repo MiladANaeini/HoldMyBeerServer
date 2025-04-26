@@ -19,9 +19,9 @@ namespace HoldMyBeerServer.Data.Migrations
 
             modelBuilder.Entity("HoldMyBeerServer.Entities.User", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<string>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("TEXT");

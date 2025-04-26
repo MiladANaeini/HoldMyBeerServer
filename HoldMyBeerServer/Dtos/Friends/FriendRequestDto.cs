@@ -9,8 +9,8 @@ public enum FriendshipStatus{
 public record class FriendRequestDto
 (
     string Id,
-    int RequesterId,
-    int AddresseeId,
+    string RequesterId,
+    string AddresseeId,
     string RequesterUserName,
     string AddresseeUserName,
     FriendshipStatus Status
