@@ -24,11 +24,11 @@ public static readonly List<UserDto> users = [
             {
                 ReceivedRequests = new List<FriendRequestDto>
                 {
-                    new FriendRequestDto(10001, 3, 1, "sagUser", "miladUser", FriendshipStatus.Pending)
+                    new FriendRequestDto("10001", 3, 1, "sagUser", "miladUser", FriendshipStatus.Pending)
                 },
                 SentRequests = new List<FriendRequestDto>
                 {
-                    new FriendRequestDto(10002, 1, 2, "miladUser", "sadafUser", FriendshipStatus.Pending)
+                    new FriendRequestDto("10002", 1, 2, "miladUser", "sadafUser", FriendshipStatus.Pending)
                 }
             }
         }

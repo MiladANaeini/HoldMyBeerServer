@@ -7,7 +7,6 @@ namespace HoldMyBeerServer.Endpoints;
 public static class FriendRequestEndpoints
 {
 const string FriendRequestEndpointName = "CreateFriendRequest";
-
 public static RouteGroupBuilder MapFriendRequestEndpoints(this WebApplication app){
 
 var group = app.MapGroup("FriendRequests").WithParameterValidation();
@@ -39,7 +38,7 @@ if (!reqList.TryGetValue(addresseeId, out var targetUser))
 }
 
  var newFriendRequest = new FriendRequestDto(
-        Id: reqList.Count + 1,
+        Id: Guid.NewGuid().ToString(),
         RequesterId: requesterId,
         AddresseeId: addresseeId,
         RequesterUserName:UserStore.users[requesterIndex].UserName,
