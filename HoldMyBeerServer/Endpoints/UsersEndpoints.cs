@@ -1,6 +1,9 @@
 using System;
+using HoldMyBeerServer.Data;
 using HoldMyBeerServer.Dtos;
 using HoldMyBeerServer.Dtos.Friends;
+using HoldMyBeerServer.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace HoldMyBeerServer.Endpoints;
 public static class UsersEndpoints
@@ -29,16 +32,18 @@ group.MapGet("/{id}", (string id) => {
 .WithName(GetUserEndpointName);
 
 // POST - CREATE USER
-group.MapPost("/",(CreateUserDto newUser)=> {
-    UserDto user = new (
-        id,
-        newUser.UserName,
-        newUser.Password,
-        newUser.Email,
-        newUser.CreatedDate,
-        new List<FriendDto>()
-    );
-    UserStore.users.Add(user);
+group.MapPost("/",(CreateUserDto newUser,HoldMyBeerContext dbContext)=> {
+    
+    User user = new() {
+        Id = id,
+        UserName = newUser.UserName,
+        Password = newUser.Password,
+        Email = newUser.Email,
+        CreatedDate = DateOnly.FromDateTime(DateTime.UtcNow)
+    };
+
+    dbContext.Users.Add(user);
+    dbContext.SaveChanges();
 
     return Results.CreatedAtRoute(GetUserEndpointName,
      new { id = user.Id }, user);
@@ -52,15 +57,15 @@ if (userIndex == -1) {
     return Results.NotFound();
 }
 
-var existingFriends = UserStore.users[userIndex].Friends;
+// var existingFriends = UserStore.users[userIndex].Friends;
 
  UserStore.users[userIndex] = new UserDto(
     id,
     updatedUser.UserName,
     updatedUser.Password,
     updatedUser.Email,
-    UserStore.users[userIndex].CreatedDate,
-    existingFriends
+    UserStore.users[userIndex].CreatedDate
+    // existingFriends
  );
 
  return Results.NoContent();

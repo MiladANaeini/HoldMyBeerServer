@@ -11,8 +11,7 @@ Content-Type: application/json
 {
     "userName": "sagTole",
     "password": "sag333",
-    "email": "sag@test.com",
-    "createdDate": "2011-11-18"
+    "email": "sag@test.com"
 }
 
 ###

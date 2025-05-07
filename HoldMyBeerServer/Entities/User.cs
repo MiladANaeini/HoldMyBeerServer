@@ -1,4 +1,5 @@
 using System;
+using HoldMyBeerServer.Entities.FriendRequests;
 
 namespace HoldMyBeerServer.Entities;
 
@@ -9,7 +10,9 @@ public class User
    public string UserName { get; set; } = null!;
    public string Password { get; set; } = null!;
    public string Email { get; set; } = null!;
-   public DateTime CreatedDate { get; set; }
+   public DateOnly CreatedDate { get; set; }
    
-    public List<Friend> Friends { get; set; } = new();
+   public List<FriendRequest> ReceivedRequests  { get; set; } = new();
+   public List<FriendRequest> SentRequests  { get; set; } = new();
+   public List<Friendship> Friendships  { get; set; } = new();
 }

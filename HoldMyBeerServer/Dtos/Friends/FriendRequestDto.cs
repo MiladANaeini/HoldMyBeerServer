@@ -13,5 +13,6 @@ public record class FriendRequestDto
     string AddresseeId,
     string RequesterUserName,
     string AddresseeUserName,
-    FriendshipStatus Status
+    FriendshipStatus Status,
+    DateOnly CreatedAt
 );
