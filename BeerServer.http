@@ -11,11 +11,11 @@ Content-Type: application/json
 {
     "userName": "sagTole",
     "password": "sag333",
-    "email": "sag@test.com"
+    "email": "milad@test.coms"
 }
 
 ###
-PUT  http://localhost:5260/users/3
+PUT  http://localhost:5260/users/35c68613-3cae-4d10-838b-d06c7d050b1b
 Content-Type: application/json
 
 {
@@ -25,7 +25,7 @@ Content-Type: application/json
 }
 
 ###
-DELETE   http://localhost:5260/users/1
+DELETE   http://localhost:5260/users/c0e2aedb-e19d-4cac-87b3-0f8dec1afece
 
 
 ### FRIEND REQUEST =======================

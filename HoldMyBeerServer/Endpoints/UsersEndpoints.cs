@@ -19,20 +19,41 @@ var group = app.MapGroup("users").WithParameterValidation();
 var id = Guid.NewGuid().ToString();
 
 // GET - ALL USERS
-group.MapGet("/", () => UserStore.users);
+group.MapGet("/", async (HoldMyBeerContext dbContext) => {
+
+    var users = await dbContext.Users.ToListAsync();
+
+    if(users == null || users.Count == 0){
+        return Results.NoContent(); // 204 no users exist
+    }
+
+    return Results.Ok(users); // 200
+});
 
 // GET - USER
-group.MapGet("/{id}", (string id) => {
+group.MapGet("/{id}", (string id , HoldMyBeerContext dbContext) => {
 
-    UserDto? user = UserStore.users.Find(user => user.Id == id);
-
-    return user is null ? Results.NotFound() : Results.Ok(user);
+   var user = dbContext.Users.Find(id);
+   return user is null ? Results.NotFound() : Results.Ok(user)
+;   
 }
 )
 .WithName(GetUserEndpointName);
 
 // POST - CREATE USER
 group.MapPost("/",(CreateUserDto newUser,HoldMyBeerContext dbContext)=> {
+
+    var exsitingUserEmail = dbContext.Users.FirstOrDefault(u => u.Email == newUser.Email);
+
+    if(exsitingUserEmail != null){
+        return Results.BadRequest("Email already in use");
+    }
+    
+    var exsitingUserName = dbContext.Users.FirstOrDefault(u => u.UserName == newUser.UserName);
+
+    if(exsitingUserName != null){
+        return Results.BadRequest("UserName is already taken");
+    }
     
     User user = new() {
         Id = id,
@@ -50,33 +71,46 @@ group.MapPost("/",(CreateUserDto newUser,HoldMyBeerContext dbContext)=> {
 });
 
 // PUT - UPDATE USER
-group.MapPut("/{id}",(string id , UpdateUserDto updatedUser)=> {
- var userIndex = UserStore.users.FindIndex(user => user.Id == id);
+group.MapPut("/{id}",(string id, UpdateUserDto updatedUser, HoldMyBeerContext dbContext)=> {
 
-if (userIndex == -1) {
-    return Results.NotFound();
+ var existingUser = dbContext.Users.FirstOrDefault(u => u.Id == id);    
+
+if (existingUser == null) {
+     return Results.BadRequest("User Not found");
 }
 
-// var existingFriends = UserStore.users[userIndex].Friends;
+ // Check for uniqueness of email and username (excluding the current user)
+    bool emailInUse = dbContext.Users.Any(u => u.Email == updatedUser.Email && u.Id != id);
+    bool usernameInUse = dbContext.Users.Any(u => u.UserName == updatedUser.UserName && u.Id != id);
+    if (emailInUse || usernameInUse)
+    {
+        return Results.BadRequest("Email or username already in use by another user.");
+    }
 
- UserStore.users[userIndex] = new UserDto(
-    id,
-    updatedUser.UserName,
-    updatedUser.Password,
-    updatedUser.Email,
-    UserStore.users[userIndex].CreatedDate
-    // existingFriends
- );
+    // Update the user
+    existingUser.UserName = updatedUser.UserName;
+    existingUser.Password = updatedUser.Password;
+    existingUser.Email = updatedUser.Email;
 
- return Results.NoContent();
+    dbContext.SaveChanges();
+
+    return Results.NoContent();
 });
 
 // DELETE - USER 
-group.MapDelete("/{id}",(string id)=> {
-    UserStore.users.RemoveAll(user => user.Id == id);
+group.MapDelete("/{id}", (string id, HoldMyBeerContext dbContext) =>
+{
+    var user = dbContext.Users.FirstOrDefault(u => u.Id == id);
+    if (user == null)
+    {
+        return Results.NotFound("User not found.");
+    }
 
- return Results.NoContent();
-  });
+    dbContext.Users.Remove(user);
+    dbContext.SaveChanges();
+
+    return Results.NoContent();
+});
 
 
   return group;
