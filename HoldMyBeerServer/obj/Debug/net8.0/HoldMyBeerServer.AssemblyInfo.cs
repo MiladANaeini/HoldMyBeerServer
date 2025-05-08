@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("HoldMyBeerServer")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ede6e1a9a0ae52080e1ac4a8461c3a5a68bac3ff")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+48d278ddf2e4beae5312364688adde8d17104d7b")]
 [assembly: System.Reflection.AssemblyProductAttribute("HoldMyBeerServer")]
 [assembly: System.Reflection.AssemblyTitleAttribute("HoldMyBeerServer")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
